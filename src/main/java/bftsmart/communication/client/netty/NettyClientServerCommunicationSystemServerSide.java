@@ -121,14 +121,18 @@ public class NettyClientServerCommunicationSystemServerSide extends SimpleChanne
 			String confAddress = controller.getStaticConf().getRemoteAddress(controller.getStaticConf().getProcessId())
 					.getAddress().getHostAddress();
 
+			logger.info("Conf address is: " + confAddress);
+
 			if (InetAddress.getLoopbackAddress().getHostAddress().equals(confAddress)) {
 
+				logger.info("Using loopback address");
 				myAddress = InetAddress.getLoopbackAddress().getHostAddress();
 
 			}
 
 			else if (controller.getStaticConf().getBindAddress().equals("")) {
 
+				logger.info("Bind address is empty, using localhost");
 				myAddress = InetAddress.getLocalHost().getHostAddress();
 
 				// If Netty binds to the loopback address, clients will not be able to connect
@@ -141,7 +145,7 @@ public class NettyClientServerCommunicationSystemServerSide extends SimpleChanne
 				}
 
 			} else {
-
+				logger.info("Set the port to the port found in the static conf");
 				myAddress = controller.getStaticConf().getBindAddress();
 			}
 
