@@ -179,6 +179,12 @@ public class ServersCommunicationLayer extends Thread {
 
 		serverSocketSSLTLS.setEnabledCipherSuites(this.controller.getStaticConf().getEnabledCiphers());
 
+        logger.debug("Ciphers enabled: " + Arrays.toString(this.controller.getStaticConf().getEnabledCiphers()));
+
+        logger.debug("Ciphers enabled in server socket: " + Arrays.toString(serverSocketSSLTLS.getEnabledCipherSuites()));
+        logger.debug("Ciphers supported in server socket: " + Arrays.toString(serverSocketSSLTLS.getSupportedCipherSuites()));
+        logger.debug("Protocols supported in server socket: " + Arrays.toString(serverSocketSSLTLS.getSupportedProtocols()));
+
         logger.debug("Supported ciphers:");
 		String[] ciphers = serverSocketFactory.getSupportedCipherSuites();
 		for (int i = 0; i < ciphers.length; i++) {
