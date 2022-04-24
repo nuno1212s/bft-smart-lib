@@ -28,6 +28,7 @@ import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
@@ -559,6 +560,8 @@ public class ServerConnection {
 			this.socket.setKeepAlive(true);
 			this.socket.setTcpNoDelay(true);
 			this.socket.setEnabledCipherSuites(this.controller.getStaticConf().getEnabledCiphers());
+
+			logger.debug("Enabled cipher suites creating socket: " + Arrays.toString(this.socket.getEnabledCipherSuites()));
 
 			this.socket.addHandshakeCompletedListener(new HandshakeCompletedListener() {
 				@Override
