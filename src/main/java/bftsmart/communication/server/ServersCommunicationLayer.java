@@ -176,6 +176,7 @@ public class ServersCommunicationLayer extends Thread {
 
 		serverSocketSSLTLS.setEnabledCipherSuites(this.controller.getStaticConf().getEnabledCiphers());
 
+        logger.debug("Supported ciphers:");
 		String[] ciphers = serverSocketFactory.getSupportedCipherSuites();
 		for (int i = 0; i < ciphers.length; i++) {
 			logger.trace("Supported Cipher: {} ", ciphers[i]);
