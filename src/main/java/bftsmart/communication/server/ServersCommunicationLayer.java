@@ -167,10 +167,13 @@ public class ServersCommunicationLayer extends Thread {
 		trustMgrFactory = TrustManagerFactory.getInstance(algorithm);
 		trustMgrFactory.init(ks);
 
-		context = SSLContext.getInstance(this.ssltlsProtocolVersion);
+        logger.debug(this.ssltlsProtocolVersion);
+
+        context = SSLContext.getInstance(this.ssltlsProtocolVersion);
 		context.init(kmf.getKeyManagers(), trustMgrFactory.getTrustManagers(), new SecureRandom());
 
 		serverSocketFactory = context.getServerSocketFactory();
+
 		this.serverSocketSSLTLS = (SSLServerSocket) serverSocketFactory.createServerSocket(myPort, 100,
 				InetAddress.getByName(myAddress));
 
